@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { errorHandler } from './middleware/errorHandler';
+import knowMeRouter from './routes/knowMe';
+import romanticRouter from './routes/romantic';
 
 dotenv.config();
 
@@ -14,6 +16,10 @@ app.use(express.json());
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
+
+app.use('api/rooms/know-me', knowMeRouter);
+app.use('api/rooms/romantic', romanticRouter);
+
 
 app.use(errorHandler);
 
